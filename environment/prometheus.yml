@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 30s # 30초마다 매트릭을 수집 / default 60초
+  evaluation_interval: 30s  # 10초마다 규칙 평가 / default 60초
+scrape_configs:
+  - job_name: 'circuit-breaker' # 수집하는 job 명칭
+    metrics_path: '/actuator/prometheus' # Application prometheus endpoint
+    #scrape_interval: 30s
+    static_configs:
+      - targets: ['host.docker.internal:8080'] # Application host:port, 도커 컨테이너에서 호스트를 접근하도록 설정
